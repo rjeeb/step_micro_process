@@ -45,6 +45,12 @@ class Status internal constructor(private val needs: MutableMap<NeedLabel, Need>
             .filterNot { this.needs[it]?.currentValue() == other.needs[it]?.currentValue() }
             .map { Change(it, other.needs[it]?.currentValue(), this.needs[it]?.currentValue()) }
 
+    fun keepOnly(role: Role) {
+        needs.keys.filterNot { it.role == role }.forEach { label ->
+            needs.remove(label)
+        }
+    }
+
     inner class Changes internal constructor() {
         lateinit var additions: List<Need>
         lateinit var deletions: List<Need>

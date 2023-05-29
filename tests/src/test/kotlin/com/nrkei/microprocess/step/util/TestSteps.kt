@@ -7,12 +7,22 @@
 package com.nrkei.microprocess.step.util
 
 import com.nrkei.microprocess.step.needs.NeedLabel
+import com.nrkei.microprocess.step.needs.Role
 import com.nrkei.microprocess.step.needs.Status
 import com.nrkei.microprocess.step.needs.StringValueNeed
 import com.nrkei.microprocess.step.steps.Step
+import com.nrkei.microprocess.step.util.TestRole.*
 
 internal enum class TestLabel : NeedLabel {
     A, B, C, D, I
+}
+
+internal enum class RoleBasedLabel(override val role: Role) : NeedLabel {
+    MAKER_LABEL(MAKER), CHECKER_LABEL(CHECKER), APPROVER_LABEL(APPROVER)
+}
+
+internal enum class TestRole : Role {
+    MAKER, CHECKER, APPROVER
 }
 
 internal class RequiredLabelsStep(vararg requiredLabels: NeedLabel) : Step {
