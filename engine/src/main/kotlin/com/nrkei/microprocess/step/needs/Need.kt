@@ -21,6 +21,16 @@ enum class NeedState {
 // Identifies a specific choice
 interface NeedLabel {
     val name: String
+    val role: Role get() = StandardRole.EVERYONE
+}
+
+// Identifies a specific role
+interface Role {
+    val name: String
+}
+
+enum class StandardRole : Role {
+    EVERYONE
 }
 
 // A self-identifing choice
